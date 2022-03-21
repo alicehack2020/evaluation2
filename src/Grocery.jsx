@@ -6,7 +6,6 @@ function Grocery() {
   return (
      <div>
        <GroceryInput/>
-       <GroceryList/>
      </div>
   );
 }
