@@ -5,7 +5,9 @@ const GroceryList = () =>
 {
   const [gList,setGList]=useState([])
   
-    useEffect(()=>{
+    
+  
+  useEffect(()=>{
       fetch("http://localhost:3004/grocery")
       .then(res=>res.json())
       .then(data=>setGList(data))
@@ -48,10 +50,35 @@ function removeItem(id)
 //       "role": "dfg",
 //       "salary": "df",
 //       "id": "db8c58f2-e150-408d-a1db-bcaaf9211945"
+const Show_All_Departments=()=>
+{
+
+}
+
+const Ascending=()=>{
+     gList.sort(dynamicsort("salary","desc"))
+}
 
 
 
-
+function dynamicsort(property,order) {
+  var sort_order = 1;
+  if(order === "desc"){
+      sort_order = -1;
+  }
+  return function (a, b){
+      // a should come before b in the sorted order
+      if(a[property] < b[property]){
+              return -1 * sort_order;
+      // a should come after b in the sorted order
+      }else if(a[property] > b[property]){
+              return 1 * sort_order;
+      // a and b are the same
+      }else{
+              return 0 * sort_order;
+      }
+  }
+}
 
   return (
     <div>
@@ -62,9 +89,16 @@ function removeItem(id)
       <button>Show IT</button>
       <button>Show Finance</button>
       <button>Show Marketing</button>
+    </div> 
+   
+   <div>
+    <button onClick={Ascending}>Sort By Salary Ascending</button>
 
-
+      <button>Sort By Salary Descending</button>
     </div>
+
+
+
     {
       gList.map((ele)=>{
         return (<div className='card'>

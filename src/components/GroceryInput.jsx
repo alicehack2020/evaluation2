@@ -11,13 +11,7 @@ const [Gender,setGender]=useState()
 const [Department,setDepartment]=useState()
 const [Role,setRole]=useState()
 const [Salary,setSalary]=useState()
-
-
 const [ochnage,setOChnage]=useState()
-
-
-
-
 const AddToDb=(obj)=>
 {
   var data1=JSON.stringify(obj)
