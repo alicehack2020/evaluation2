@@ -11,7 +11,9 @@ const [Gender,setGender]=useState()
 const [Department,setDepartment]=useState()
 const [Role,setRole]=useState()
 const [Salary,setSalary]=useState()
-const [ochnage,setOChnage]=useState()
+
+const [refresh, setRefresh] = React.useState(0)
+
 const AddToDb=(obj)=>
 {
   var data1=JSON.stringify(obj)
@@ -23,12 +25,12 @@ const AddToDb=(obj)=>
       }
     })
 
-    setOChnage(obj)
-
+   
+    setRefresh(refresh + 1)
     
 }
 
-function AddToList()
+function AddToList(d)
 {
     let obj={
       names:Name,
@@ -40,7 +42,8 @@ function AddToList()
     }
  
       AddToDb(obj)
-
+     
+  
 
 }
 
@@ -61,15 +64,11 @@ function AddToList()
 
         <input type="text" name="" id="" placeholder='Salary'
         value={Salary} onChange={(e)=>setSalary(e.target.value)}/>
-      <button onClick={AddToList}>Add</button>
+      <button onClick={()=>AddToList(1)}>Add</button>
     </div>
 
     <div>
-      {
-         <GroceryList />
-      
-      }
-       
+       <GroceryList data={refresh}/>
     </div>
 
     </>

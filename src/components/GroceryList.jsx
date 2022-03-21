@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import "./GroceryList.css"
 
-const GroceryList = () => 
+const GroceryList = (probs) => 
 {
   const [gList,setGList]=useState([])
-  
+  let x=probs.data;
     
   
   useEffect(()=>{
       fetch("http://localhost:3004/grocery")
       .then(res=>res.json())
       .then(data=>setGList(data))
-    },[])
+    },[x])
 
   
   
@@ -57,6 +57,7 @@ const Show_All_Departments=()=>
 
 const Ascending=()=>{
      gList.sort(dynamicsort("salary","desc"))
+     console.log(gList);
 }
 
 
